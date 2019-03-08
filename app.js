@@ -21,7 +21,23 @@ require('./utils/seeder.js')(app)  // load seed data
 // By default, Express does not serve static files. 
 // Configure middleware with app.use
 // use '/public to access files in the 'public' folder
-app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname+'/public'));
+
+app.get('/',function(req,res){
+  res.sendFile(path.join(__dirname+'/public/index.html'));
+})
+app.get('/index',function(req,res){
+  res.sendFile(path.join(__dirname+'/public/index.html'));
+})
+app.get('/section1',function(req,res){
+  res.sendFile(path.join(__dirname+'/public/section1.html'));
+})
+app.get('/section2',function(req,res){
+  res.sendFile(path.join(__dirname+'/public/section2.html'));
+})
+app.get('/section3',function(req,res){
+  res.sendFile(path.join(__dirname+'/public/section3.html'));
+})
 
 const routing = require('./routes/router.js')
 app.use('/', routing)  // load routing
